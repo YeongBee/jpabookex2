@@ -4,17 +4,19 @@ import jakarta.persistence.*;
 import jakarta.persistence.criteria.Order;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
-public class Member {
-/*
+@Entity
+@ToString
+public class Member{
+
     @Id @GeneratedValue
     @Column(name = "member_id")
-    */
     private Long id;
     private String name;
     private String street;

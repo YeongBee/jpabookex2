@@ -12,6 +12,7 @@ public class Jpabookex2Application {
 		ConfigurableApplicationContext context = SpringApplication.run(Jpabookex2Application.class, args);
 		CreateRegistration createRegistration = context.getBean(CreateRegistration.class);
 		createRegistration.create();
+		createRegistration.parentChild();
 	}
 
 }

@@ -9,8 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "Dty")
-public class Item {
+@DiscriminatorColumn
+public class Item extends BaseEntity{
 
     @Id @GeneratedValue
     private Long id;

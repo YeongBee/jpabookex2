@@ -1,9 +1,7 @@
 package jpabook.jpabookex2.registration;
 
 import jakarta.persistence.EntityManager;
-import jpabook.jpabookex2.domain.Album;
-import jpabook.jpabookex2.domain.Item;
-import jpabook.jpabookex2.domain.Movie;
+import jpabook.jpabookex2.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +25,30 @@ public class CreateRegistration {
         em.flush();
         em.clear();
 
+        Member member = new Member("MemberA", "거리", "대한민국");
+        em.persist(member);
+
         Movie findMovie = em.find(Movie.class, movie.getId());
         System.out.println("findMovie = " + findMovie);
 
+        Member findMember = em.getReference(Member.class, member.getId());
+
+        em.clear();
+        System.out.println("findMemberClass = " + findMember.getClass());
+
+        System.out.println("isLoaded = " + em.getEntityManagerFactory().getPersistenceUnitUtil().isLoaded(findMember));
+
+    }
+
+    @Transactional
+    public void parentChild(){
+        Child child1 = new Child();
+        Child child2 = new Child();
+
+        Parent parent = new Parent();
+        parent.addChild(child1);
+        parent.addChild(child2);
+
+       em.persist(parent);
     }
 }
